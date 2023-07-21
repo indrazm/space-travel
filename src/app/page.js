@@ -1,7 +1,8 @@
 import { Home } from "@/components/Home";
+import { API_URL } from "@/utils/apiUrl";
 
 async function getTrips() {
-  const res = await fetch("http://localhost:3000/api/v1/trip");
+  const res = await fetch(`${API_URL}/api/v1/trip`);
   const data = await res.json();
   return data;
 }

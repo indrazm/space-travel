@@ -1,9 +1,8 @@
 import { BuyTicket } from "@/components/BuyTicket";
+import { API_URL } from "@/utils/apiUrl";
 
 async function getTicket(tripId) {
-  const res = await fetch(
-    `http://localhost:3000/api/v1/ticket?tripId=${tripId}`
-  );
+  const res = await fetch(`${API_URL}/api/v1/ticket?tripId=${tripId}`);
   const data = await res.json();
   return data;
 }
