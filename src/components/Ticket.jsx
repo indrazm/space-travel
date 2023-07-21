@@ -16,7 +16,11 @@ export const Ticket = ({
         <div className="space-y-12">
           <div>
             <h3>{isBooked ? "BOOKED" : "UNBOOKED"}</h3>
-            <p>This ticket is available</p>
+            <p>
+              {isBooked
+                ? "This ticket is belong to :"
+                : "This ticket is available"}
+            </p>
           </div>
           <div className="text-zinc-300">
             <div>{name}</div>
