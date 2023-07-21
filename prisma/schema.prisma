@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+  }
+
+model Customer {
+  id String @id @default(cuid())
+  name String
+  phoneNumber String
+  identityNumber String
+  order Order[]
+}
+
+model Trip {
+  id String @id @default(cuid())
+  destination String
+  date String
+  ticket Ticket[]
+  order Order[]
+}
+
+model Ticket {
+  id String @id @default(cuid())
+  ticketNumber String @unique
+  tripId String
+  trip Trip @relation(references: [id], fields: [tripId])
+  order Order?
+}
+
+model Order {
+  id String @id @default(cuid())
+  ticketId String @unique
+  ticket Ticket @relation(references: [id], fields: [ticketId])
+  customerId String @unique
+  customer Customer @relation(references: [id], fields: [customerId])
+  tripId String 
+  trip Trip @relation(references: [id], fields: [tripId])
+}
+
